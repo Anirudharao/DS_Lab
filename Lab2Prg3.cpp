@@ -1,6 +1,9 @@
 #include<iostream> 
+
 #include<stdlib.h> 
+
 using namespace std; 
+
 #define max_size 1000 
 
 class Stack{ 
@@ -11,6 +14,9 @@ class Stack{
     Stack(){top = -1;} 
 
     int a[max_size]; 
+
+  
+
     bool isFull(); 
 
     bool isEmpty(); 
@@ -22,8 +28,6 @@ class Stack{
     void display(); 
 
 }; 
-
-  
 
 bool Stack::isFull(){ 
 
@@ -37,8 +41,6 @@ bool Stack::isFull(){
 
 } 
 
-  
-
 bool Stack::isEmpty(){ 
 
     if(top == -1){ 
@@ -50,8 +52,6 @@ bool Stack::isEmpty(){
     return false; 
 
 } 
-
-  
 
 int Stack::push(int ele){ 
 
@@ -66,9 +66,6 @@ int Stack::push(int ele){
     } 
 
 } 
-
-  
-
 int Stack::pop(){ 
 
     if(isEmpty()){ 
@@ -84,9 +81,6 @@ int Stack::pop(){
     } 
 
 } 
-
-  
-
 void Stack::display(){ 
 
     if(isEmpty()){ 
@@ -99,78 +93,57 @@ void Stack::display(){
 
         for(int i=top; i>=0; i--){ 
 
-            cout<<a[i]<<" "; 
+            if(a[i] < 10){ 
+
+                cout<<a[i]; 
+
+            } 
+
+            else{ 
+
+                cout<<char(a[i] + 55); 
+
+            } 
 
         } cout<<endl; 
 
     } 
 
 } 
-
-  
-
-  
-
 int main(){ 
 
-    Stack s; 
+    Stack st; 
 
-    cout<<"Enter the string: "; 
+    int base; 
 
-    char a[50]; 
+    cout<<"Enter the base to which u want to convert the number to: "<<endl; 
 
-    cin>>a; 
+    cin>>base; 
 
-  
+    int n; 
 
-    int n=0; 
+    cout<<"Enter the number: "<<endl; 
 
-  
+    cin>>n; 
 
-    for(int i=0; a[i]!='\0'; i++){ 
+    int rem; 
+        do{ 
 
-        n++; 
+        rem = n%base; 
 
-    } 
+        if(rem<10){ 
 
-  
+            st.push(rem); 
 
-    int count = 0; 
+        } else{ 
 
-  
-
-  
-
-    for(int i=0; i<n; i++){ 
-
-        s.push(a[i]); 
-
-    } 
-
-    for(int i=0; i<n; i++){ 
-
-        if(a[i] == s.pop()){ 
-
-            count++; 
-
-  
+            st.push(rem); 
 
         } 
+        n/=base; 
 
-    } 
-
-  
-
-    if(count == n){ 
-
-        cout<<"Palindrome"<<endl; 
-
-    } else{ 
-
-        cout<<"Not a palindrome"<<endl; 
-
-    } 
-
+        } while(n!=0); 
+    st.display(); 
     return 0; 
 
 } 
